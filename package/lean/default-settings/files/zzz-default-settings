@@ -64,6 +64,8 @@ echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 
 sed -i 's/cbi.submit\"] = true/cbi.submit\"] = \"1\"/g' /usr/lib/lua/luci/dispatcher.lua
 
+echo "0xDEADBEEF" > /etc/config/google_fu_mode
+
 rm -rf /tmp/luci-modulecache/
 rm -f /tmp/luci-indexcache
 
