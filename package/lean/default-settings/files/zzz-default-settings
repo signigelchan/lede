@@ -21,7 +21,7 @@ uci commit firewall
 # /etc/config/dropbear
 uci set dropbear.@dropbear[0].Interface='lan'
 uci del dropbear.@dropbear[0].RootPasswordAuth
-uci set dropbear.@dropbear[0].Port='29333'
+#uci set dropbear.@dropbear[0].Port='29333'
 uci commit dropbear
 
 # /etc/config/fstab
@@ -58,7 +58,8 @@ sed -i 's/http/https/g' /etc/opkg/distfeeds.conf
 sed -i "s/# //g" /etc/opkg/distfeeds.conf
 
 #sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' /etc/shadow
-sed -i 's/root::0:0:99999:7:::/root:$1$nmRfJHqK$ze4DUphJgChj95bnKgxHu.:0:0:99999:7:::/g' /etc/shadow
+#sed -i 's/root::0:0:99999:7:::/root:$1$nmRfJHqK$ze4DUphJgChj95bnKgxHu.:0:0:99999:7:::/g' /etc/shadow
+sed -i 's/root::0:0:99999:7:::/root:$1$pW7WP9sQ$1eSQJXvV1MarRhuWyhR541:0:0:99999:7:::/g' /etc/shadow
 
 # /etc/config/dhcp
 uci set dhcp.lan.ra='server'
