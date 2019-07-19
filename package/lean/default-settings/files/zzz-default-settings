@@ -5,7 +5,7 @@ uci set luci.main.lang='zh_cn'
 uci commit luci
 
 # /etc/config/system
-uci set system.@system[0].hostname='LEAN'
+#uci set system.@system[0].hostname='LEAN'
 uci set system.@system[0].timezone='CST-8'
 uci set system.@system[0].zonename='Asia/Shanghai'
 uci del system.ntp.enable_server
@@ -14,15 +14,15 @@ uci add_list system.ntp.server='pool.ntp.org'
 uci commit system
 
 # /etc/config/firewall
-uci set firewall.@zone[1].input='ACCEPT'
-uci set firewall.@zone[1].forward='ACCEPT'
-uci commit firewall
+#uci set firewall.@zone[1].input='ACCEPT'
+#uci set firewall.@zone[1].forward='ACCEPT'
+#uci commit firewall
 
 # /etc/config/dropbear
-uci set dropbear.@dropbear[0].Interface='lan'
-uci del dropbear.@dropbear[0].RootPasswordAuth
+#uci set dropbear.@dropbear[0].Interface='lan'
+#uci del dropbear.@dropbear[0].RootPasswordAuth
 #uci set dropbear.@dropbear[0].Port='29333'
-uci commit dropbear
+#uci commit dropbear
 
 # /etc/config/fstab
 uci set fstab.@global[0].anon_mount=1
@@ -92,4 +92,3 @@ rm -rf /tmp/luci-modulecache/
 rm -f /tmp/luci-indexcache
 
 exit 0
-
