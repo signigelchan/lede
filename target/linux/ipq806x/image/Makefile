@@ -81,9 +81,9 @@ endef
 
 define Device/buffalo_wxr-2533dhp
 	$(call Device/LegacyImage)
-	DEVICE_DTS := qcom-ipq8064-wxr-2533dhp
 	DEVICE_VENDOR := Buffalo
 	DEVICE_MODEL := WXR-2533DHP
+	DEVICE_DTS := qcom-ipq8064-wxr-2533dhp
 	BLOCKSIZE := 128k
 	PAGESIZE := 2048
 	IMAGE_SIZE := 65536k
@@ -100,9 +100,9 @@ define Device/compex_wpq864
 	$(call Device/UbiFit)
 	DEVICE_VENDOR := Compex
 	DEVICE_MODEL := WPQ864
+	DEVICE_DTS := qcom-ipq8064-wpq864
 	BLOCKSIZE := 128k
 	PAGESIZE := 2048
-	DEVICE_DTS := qcom-ipq8064-wpq864
 	DEVICE_PACKAGES := kmod-gpio-beeper
 endef
 TARGET_DEVICES += compex_wpq864
@@ -260,6 +260,25 @@ define Device/qcom_ipq8064-db149
 endef
 TARGET_DEVICES += qcom_ipq8064-db149
 
+define Device/ruijie_rg-mtfi-m520
+	DEVICE_VENDOR := Ruijie
+	DEVICE_MODEL := RG-MTFi-M520
+	DEVICE_DTS := qcom-ipq8064-mtfi-m520
+	KERNEL_SIZE := 4096k
+	BLOCKSIZE := 64k
+	BOARD_NAME := rg-mtfi-m520
+	KERNEL_SUFFIX := -uImage
+	KERNEL = kernel-bin | append-dtb | uImage none | pad-to $${KERNEL_SIZE}
+	KERNEL_NAME := zImage
+	IMAGES := factory.bin sysupgrade.bin mmcblk0p2-kernel.bin mmcblk0p3-rootfs.bin
+	IMAGE/factory.bin := qsdk-ipq-factory-nor
+	IMAGE/sysupgrade.bin/squashfs := append-rootfs | pad-to $$$${BLOCKSIZE} | sysupgrade-tar rootfs=$$$$@ | append-metadata
+	IMAGE/mmcblk0p2-kernel.bin := append-kernel | pad-to $$$${KERNEL_SIZE}
+	IMAGE/mmcblk0p3-rootfs.bin := append-rootfs | pad-rootfs
+	DEVICE_PACKAGES := ath10k-firmware-qca988x-ct blockd e2fsprogs f2fs-tools kmod-fs-ext4 kmod-fs-f2fs losetup
+endef
+TARGET_DEVICES += ruijie_rg-mtfi-m520
+
 define Device/tplink_c2600
 	$(call Device/TpSafeImage)
 	DEVICE_VENDOR := TP-Link
@@ -279,11 +298,11 @@ define Device/tplink_vr2600v
 	DEVICE_VENDOR := TP-Link
 	DEVICE_MODEL := Archer VR2600v
 	DEVICE_VARIANT := v1
+	DEVICE_DTS := qcom-ipq8064-vr2600v
 	KERNEL_SUFFIX := -uImage
 	KERNEL = kernel-bin | append-dtb | uImage none
 	KERNEL_NAME := zImage
 	KERNEL_SIZE := 3072k
-	DEVICE_DTS := qcom-ipq8064-vr2600v
 	BLOCKSIZE := 128k
 	PAGESIZE := 2048
 	BOARD_NAME := vr2600v
